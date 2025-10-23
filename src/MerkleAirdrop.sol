@@ -33,6 +33,6 @@ contract MerkleAirdrop {
             revert MerkleAirdrop__InvalidProof();
         }
         emit Claim(account, amount);
-        i_airdropToken.transfer(account, amount);
+        i_airdropToken.safeTransfer(account, amount);
     }
 }
