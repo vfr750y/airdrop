@@ -15,6 +15,9 @@ contract DeployMerkleAirdrop is Script {
         BagelToken token = new BagelToken();
         MerkleAirdrop airdrop = new MerkleAirdrop(s_merkleRoot, IERC20(address(token)));
         token.mint(token.owner(), s_amountToTransfer);
+        token.transfer(address(airdrop), s_amountToTransfer);
+        vm.stopBroadcast();
+        return (airdrop, token);
     }
 
     function run() external returns (MerkleAirdrop, BagelToken) {
