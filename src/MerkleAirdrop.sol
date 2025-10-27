@@ -25,6 +25,9 @@ contract MerkleAirdrop {
         i_airdropToken = airdropToken;
     }
     // message + signature gives permission for another address to call the claim function with your address.
+    // the receiver of the signed message is able to use it to claim on the senders behalf
+    // the claim function is then able to check that the signature originates from an account that is allowed to claim
+    // accounts that are in the merkle tree are allowed to claim the airdrop
 
     function claim(address account, uint256 amount, bytes32[] calldata merkleProof) external {
         if (s_hasClaimed[account]) {
